@@ -21,22 +21,7 @@ public class CameraEnemy : DamageableObject
         onPlayerInLight.AddListener(OnPlayerInLight);
     }
 
-    /*protected override void TakeDamage(int damage) {
-        Debug.Log("Taking Damage");
-        health.TakeDamage(damage);
-        if (health.GetHealth() <= 0) {
-            onDeath?.Invoke();
-        }
-    }*/
-
-    /*protected override void OnDeath() {
-        onDeath?.Invoke();
-    }*/
-
     public void OnPlayerInLight() {
         light.color = Color.red;
     }
-
-
-    
 }
