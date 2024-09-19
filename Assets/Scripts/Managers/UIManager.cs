@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour
 
     private void OnEnable() {
         playerHealth.OnHealthUpdated += OnHealthUpdated;
-        playerHealth.OnDeath += OnDeath;
+        playerHealth.onDeath += OnDeath;
     }
 
     private void OnDestroy() {

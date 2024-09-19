@@ -7,11 +7,11 @@ public class Health : MonoBehaviour {
     [SerializeField] private float maxHealth;
 
     public Action<float> OnHealthUpdated;
-    public Action OnDeath;
+    public Action onDeath;
 
     public bool isDead { get; private set; }
 
-    private float health;
+    [SerializeField] private float health;
 
     // Start is called before the first frame update
     void Start()
@@ -28,9 +28,14 @@ public class Health : MonoBehaviour {
         if (health <= 0) {
             isDead = true;
             OnDeath();
+            onDeath?.Invoke();
             health = 0;
         }
 
         OnHealthUpdated(health);
+    }
+
+    void OnDeath() {
+        Debug.Log("Player died");
     }
 }

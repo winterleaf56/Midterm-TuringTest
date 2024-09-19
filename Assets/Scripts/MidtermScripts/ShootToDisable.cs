@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootToDisable : MonoBehaviour
+public class ShootToDisable : DamageableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private EnemyHealth health;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    protected override void Awake() {
+        base.Awake();
     }
 }
