@@ -23,7 +23,7 @@ TagManager:
   - Pickable
   - LaserCollision
   - Player
-  - 
+  - PlayerHiding
   - 
   - 
   - 
