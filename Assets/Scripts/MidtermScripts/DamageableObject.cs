@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class DamageableObject : MonoBehaviour
-{
+public abstract class DamageableObject : MonoBehaviour {
     [SerializeField] private LayerMask bulletLayer;
     [SerializeField] private LayerMask rocketLayer;
 
@@ -13,10 +12,6 @@ public abstract class DamageableObject : MonoBehaviour
     private EnemyHealth enemyHealth;
 
     public UnityEvent onDeath;
-
-    //[SerializeField] private CameraEnemy enemy; // Create mEnemy and change this to mEnemy, mEnemy also needs TakeDamage method
-
-    //UnityEvent onDeath;
 
     protected virtual void Awake() {
         enemyHealth = new EnemyHealth(maxHealth, maxHealth);

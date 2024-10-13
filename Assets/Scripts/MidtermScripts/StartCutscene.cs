@@ -6,33 +6,16 @@ using UnityEngine.Events;
 using System.Net;
 using Unity.Mathematics;
 
-public class StartCutscene : CutsceneBehaviour
-{
-    /*[SerializeField] private Transform player;
-    [SerializeField] private PlayableDirector director;*/
+public class StartCutscene : CutsceneBehaviour {
 
     [SerializeField] private Transform endPoint;
-
-    /*public UnityEvent onCutsceneTrigger;
-    public UnityAction onCutsceneFinished;*/
-
-    /*public override void PlayCutscene() {
-        MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
-
-        ToggleScripts(false);
-
-        director.Play();
-        director.stopped += CutsceneFinished;
-    }*/
 
     protected override void PlayCutscene() {
         base.PlayCutscene();
     }
 
     protected override void CutsceneFinished(PlayableDirector director) {
-        /*MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
-
-        ToggleScripts(true);*/
+        ToggleScripts(true);
 
         base.CutsceneFinished(director);
 

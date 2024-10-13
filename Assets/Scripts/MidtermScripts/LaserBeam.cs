@@ -14,10 +14,7 @@ public class LaserBeam : MonoBehaviour {
 
     Health playerHealth;
 
-    void Update() {
-        
-    }
-
+    // Switched to FixedUpdate to try and allow for smoother health deduction not based on performance
     private void FixedUpdate() {
         lineRenderer.SetPosition(0, laserOrigin.position);
 

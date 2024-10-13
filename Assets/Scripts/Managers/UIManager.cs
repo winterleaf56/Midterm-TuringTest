@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
     public TMP_Text txtHealth;
     public GameObject gameOver;
 
-    // Start is called before the first frame update
     void Start()
     {
         gameOver.SetActive(false);

@@ -19,23 +19,11 @@ public class FuseController : MonoBehaviour
 
     public UnityEvent onFusesPlaced;
 
-    /*[Header("Door")]
-    [SerializeField] private TMP_Text buttonText;
-    [SerializeField] private GameObject door;*/
-
-
-    // Start is called before the first frame update
     void Start()
     {
         foreach (PlaceFuse place in fusePlaces) {
             place.onPlaceFuse.AddListener(PlacedFuse);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void PickedUpFuse(string fuseColour) {

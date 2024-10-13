@@ -6,29 +6,25 @@ public class BossMovement : MonoBehaviour
 {
     [SerializeField] private float minSpeed = 10f;
     [SerializeField] private float maxSpeed = 25f;
-    [SerializeField] private float minAngle = -110f;
-    [SerializeField] private float maxAngle = 110f; // rotate between 110 and -110
+    [SerializeField] private float minAngle = -100f;
+    [SerializeField] private float maxAngle = 100f; // rotate between 100 and -100
 
     private float rotationSpeed, rotationAngle, currentAngle;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    public void StartSearch() {
         StartCoroutine(SearchForPlayer());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void EndSearch() {
+        StopCoroutine(SearchForPlayer());
     }
 
+
     IEnumerator SearchForPlayer() {
+        currentAngle = transform.localEulerAngles.y;
         while (true) {
             rotationSpeed = Random.Range(minSpeed, maxSpeed);
             rotationAngle = Random.Range(minAngle, maxAngle);
-
-            //transform.Rotate(Vector3.up, rotationAngle);
 
             float t = 0f;
             float startAngle = currentAngle;
@@ -42,5 +38,12 @@ public class BossMovement : MonoBehaviour
 
             yield return new WaitForSeconds(3f);
         }
+    }
+
+    void LastStand() {
+        minSpeed = 50f;
+        maxSpeed = 100f;
+        minAngle = 135f;
+        maxAngle = 235f;
     }
 }

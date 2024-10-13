@@ -15,20 +15,12 @@ public class LineOfSight : MonoBehaviour {
 
     public bool isDetected = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (isDetected == false) {
             Debug.Log("Detecting player");
             DetectPlayer();
         }
-        
     }
 
     void DetectPlayer() {
@@ -41,8 +33,6 @@ public class LineOfSight : MonoBehaviour {
             if  (angleToPlayer < fieldOfView / 2) {
                 if (!Physics.Linecast(transform.position, player.position, obstacleLayer)) {
                     Debug.Log("Player detected!");
-                    //director.Play();
-                    //PlayerCaughtCutscene.InvokePlayerCaught();
                     PlayerCaughtCutscene.Instance.TriggerCutsceneAction();
                     isDetected = true;
                 } else {
