@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class LineOfSight : MonoBehaviour {
 
@@ -9,6 +10,10 @@ public class LineOfSight : MonoBehaviour {
 
     [SerializeField] private float detectionRadius = 25f;
     [SerializeField] private float fieldOfView = 45f;
+
+    [SerializeField] private PlayableDirector director;
+
+    public bool isDetected = true;
 
     // Start is called before the first frame update
     void Start()
@@ -19,19 +24,27 @@ public class LineOfSight : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        DetectPlayer();
+        if (isDetected == false) {
+            Debug.Log("Detecting player");
+            DetectPlayer();
+        }
+        
     }
 
     void DetectPlayer() {
         Vector3 directionToPlayer = (player.position - transform.position).normalized;
         float distanceToPlayer = Vector3.Distance(player.position, transform.position);
 
-        if (distanceToPlayer < detectionRadius) {
+        if (distanceToPlayer < detectionRadius ) {
             //Vector3 adjustedForward = Quaternion.Euler(verticalAngle, 0, 0) * transform.forward;
             float angleToPlayer = Vector3.Angle(transform.forward, directionToPlayer);
             if  (angleToPlayer < fieldOfView / 2) {
                 if (!Physics.Linecast(transform.position, player.position, obstacleLayer)) {
                     Debug.Log("Player detected!");
+                    //director.Play();
+                    //PlayerCaughtCutscene.InvokePlayerCaught();
+                    PlayerCaughtCutscene.Instance.TriggerCutsceneAction();
+                    isDetected = true;
                 } else {
                     Debug.Log("Player is hiding");
                 }
@@ -57,5 +70,9 @@ public class LineOfSight : MonoBehaviour {
             Gizmos.DrawLine(transform.position, transform.position + leftBoundary);
             Gizmos.DrawLine(transform.position, transform.position + rightBoundary);
         }
+    }
+
+    public void SetDetectable() {
+        isDetected = false;
     }
 }

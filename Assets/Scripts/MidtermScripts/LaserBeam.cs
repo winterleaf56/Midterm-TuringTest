@@ -15,6 +15,10 @@ public class LaserBeam : MonoBehaviour {
     Health playerHealth;
 
     void Update() {
+        
+    }
+
+    private void FixedUpdate() {
         lineRenderer.SetPosition(0, laserOrigin.position);
 
         RaycastHit hit;
@@ -26,26 +30,11 @@ public class LaserBeam : MonoBehaviour {
 
         if (Physics.Raycast(laserOrigin.position, laserOrigin.forward, out hit, maxLaserDistance, playerLayer)) {
             Transform hitTransform = hit.transform;
-            Health playerHealth = GetHealthComponent(hitTransform);
-            DamagePlayer(playerHealth);
+            Health playerHealth = HealthUtility.GetHealthComponent(hitTransform);
+            HealthUtility.DamagePlayer(playerHealth, 5);
         }
     }
 
-    Health GetHealthComponent(Transform hitTransform) {
-        while (hitTransform != null) {
-            Health health = hitTransform.GetComponent<Health>();
-            if (health != null) {
-                return health;
-            }
 
-            hitTransform = hitTransform.parent;
-        }
-        return null;
-    }
 
-    void DamagePlayer(Health playerHealth) {
-        //player.playerHealth.DeductHealth(5);
-        playerHealth.DeductHealth(5);
-        Debug.Log("Damaging for 5 health");
-    }
 }

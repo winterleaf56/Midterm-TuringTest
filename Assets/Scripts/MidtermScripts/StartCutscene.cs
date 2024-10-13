@@ -6,49 +6,35 @@ using UnityEngine.Events;
 using System.Net;
 using Unity.Mathematics;
 
-public class StartCutscene : MonoBehaviour
+public class StartCutscene : CutsceneBehaviour
 {
-    [SerializeField] private Transform player;
-    [SerializeField] private PlayableDirector director;
+    /*[SerializeField] private Transform player;
+    [SerializeField] private PlayableDirector director;*/
 
     [SerializeField] private Transform endPoint;
 
-    public UnityEvent onCutsceneTrigger;
-    public UnityAction onCutsceneFinished;
+    /*public UnityEvent onCutsceneTrigger;
+    public UnityAction onCutsceneFinished;*/
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void PlayCutscene() {
+    /*public override void PlayCutscene() {
         MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
-
-        /*foreach (MonoBehaviour script in scripts) {
-            script.enabled = false;
-        }*/
 
         ToggleScripts(false);
 
         director.Play();
         director.stopped += CutsceneFinished;
+    }*/
+
+    protected override void PlayCutscene() {
+        base.PlayCutscene();
     }
 
-    private void CutsceneFinished(PlayableDirector director) {
-        MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
+    protected override void CutsceneFinished(PlayableDirector director) {
+        /*MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
 
-        /*foreach (MonoBehaviour script in scripts) {
-            script.enabled = true;
-        }*/
+        ToggleScripts(true);*/
 
-        ToggleScripts(true);
+        base.CutsceneFinished(director);
 
         player.position = endPoint.position;
         player.rotation = endPoint.rotation.normalized;
