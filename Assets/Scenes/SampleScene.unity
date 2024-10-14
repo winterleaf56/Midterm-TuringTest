@@ -7896,7 +7896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 0.6666667}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11723,6 +11723,7 @@ GameObject:
   - component: {fileID: 333403547}
   - component: {fileID: 333403548}
   - component: {fileID: 333403549}
+  - component: {fileID: 333403550}
   m_Layer: 14
   m_Name: Player
   m_TagString: Player
@@ -11939,6 +11940,36 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &333403550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 333403536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: 126eb978ac12a724aaf363075c618813, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 333403548}
+          m_TargetAssemblyTypeName: Health, Assembly-CSharp
+          m_MethodName: DeductHealth
+          m_Mode: 4
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 90
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &334362722
 GameObject:
   m_ObjectHideFlags: 0
@@ -19704,6 +19735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 565919624}
+  - component: {fileID: 565919625}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -19726,6 +19758,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1613773310}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &565919625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565919623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb4851d1bfbf6aa469c19d4f5b3bad60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 333403548}
+  txtHealth: {fileID: 1902846334}
+  gameOver: {fileID: 327562700}
 --- !u!1 &566296656
 GameObject:
   m_ObjectHideFlags: 0
@@ -60593,9 +60640,11 @@ PlayableDirector:
   - key: {fileID: -334338791947936173, guid: 1e8d3ede30420d640903f80c44640d4f, type: 2}
     value: {fileID: 453456990}
   - key: {fileID: 2574063789601468997, guid: 1e8d3ede30420d640903f80c44640d4f, type: 2}
-    value: {fileID: 333403536}
+    value: {fileID: 963194225}
   - key: {fileID: -5316012429696766426, guid: 1e8d3ede30420d640903f80c44640d4f, type: 2}
     value: {fileID: 560102683}
+  - key: {fileID: -5420734194807455821, guid: 1e8d3ede30420d640903f80c44640d4f, type: 2}
+    value: {fileID: 333403550}
   m_ExposedReferences:
     m_References:
     - 50ab2b18d2718714fb7772e57edc4394: {fileID: 333403536}

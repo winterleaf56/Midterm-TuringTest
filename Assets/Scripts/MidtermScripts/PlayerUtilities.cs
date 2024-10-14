@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 public class PlayerUtilities : MonoBehaviour
 {
@@ -21,7 +22,10 @@ public class PlayerUtilities : MonoBehaviour
         MonoBehaviour[] scripts = player.GetComponentsInChildren<MonoBehaviour>();
 
         foreach (MonoBehaviour script in scripts) {
-            script.enabled = choice;
+            if (script is not Health && script is not SignalReceiver) {
+                script.enabled = choice;
+            }
+                
         }
     }
 }

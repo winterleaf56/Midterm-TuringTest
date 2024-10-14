@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
     private void GameOver() {
         Debug.Log("Game Over");
         gameOverCanvas.enabled = true;
+        PlayerUtilities.Instance.ToggleScripts(false);
     }
 
     private void GameEnd() {
