@@ -13,27 +13,27 @@ public abstract class CutsceneBehaviour : MonoBehaviour
     public UnityAction onCutsceneFinished;
 
     protected virtual void PlayCutscene() {
-        MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
+        //MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
 
-        ToggleScripts(false);
+        PlayerUtilities.Instance.ToggleScripts(false);
 
         director.Play();
         director.stopped += CutsceneFinished;
     }
 
     protected virtual void CutsceneFinished(PlayableDirector director) {
-        MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
+        //MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
 
-        ToggleScripts(true);
+        PlayerUtilities.Instance.ToggleScripts(true);
     }
 
-    void ToggleScripts(bool choice) {
+    /*void ToggleScripts(bool choice) {
         MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
 
         foreach (MonoBehaviour script in scripts) {
             script.enabled = choice;
         }
-    }
+    }*/
 
     protected virtual void Awake() {
 

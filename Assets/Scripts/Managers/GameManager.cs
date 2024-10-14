@@ -16,10 +16,7 @@ public class GameManager : MonoBehaviour
 
     public UnityEvent onGameOver;
 
-    /*// Midterm Edit
-    public bool hasBlueFuse { get; private set; }
-    public bool hasGreenFuse { get; private set; }
-    public bool hasRedFuse { get; private set; }*/
+    [SerializeField] private Canvas gameOverCanvas;
 
     public enum GameState {
         Briefing,
@@ -32,13 +29,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake() {
         if (instance != null && instance != this) {
-            Destroy(instance);
+            Destroy(gameObject);
             return;
         }
         
         instance = this;
 
         onGameOver.AddListener(GameOver);
+        gameOverCanvas.enabled = false;
     }
 
     private void Start() {
@@ -99,6 +97,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver() {
         Debug.Log("Game Over");
+        gameOverCanvas.enabled = true;
     }
 
     private void GameEnd() {
@@ -137,6 +136,7 @@ public class GameManager : MonoBehaviour
     }*/
 
     public void GameOverEvent() {
+        Debug.Log("GAME OVER EVENT TRIGGERED! INVOKING...");
         onGameOver.Invoke();
     }
 

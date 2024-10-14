@@ -52,7 +52,7 @@ public class PlayerCaughtCutscene : CutsceneBehaviour {
     }
 
     protected override void CutsceneFinished(PlayableDirector director) {
-        base.CutsceneFinished(director);
+        //base.CutsceneFinished(director);
         Debug.Log("Player caught cutscene ended");
     }
 

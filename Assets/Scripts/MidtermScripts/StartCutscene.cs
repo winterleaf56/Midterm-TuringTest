@@ -15,7 +15,7 @@ public class StartCutscene : CutsceneBehaviour {
     }
 
     protected override void CutsceneFinished(PlayableDirector director) {
-        ToggleScripts(true);
+        PlayerUtilities.Instance.ToggleScripts(true);
 
         base.CutsceneFinished(director);
 
@@ -23,13 +23,13 @@ public class StartCutscene : CutsceneBehaviour {
         player.rotation = endPoint.rotation.normalized;
     }
 
-    void ToggleScripts(bool choice) {
+    /*void ToggleScripts(bool choice) {
         MonoBehaviour[] scripts = player.GetComponents<MonoBehaviour>();
 
         foreach (MonoBehaviour script in scripts) {
             script.enabled = choice;
         }
-    }
+    }*/
 
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {

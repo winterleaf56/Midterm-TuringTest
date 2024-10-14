@@ -11,12 +11,19 @@ public class BossMovement : MonoBehaviour
 
     private float rotationSpeed, rotationAngle, currentAngle;
 
+    private Coroutine searchCoroutine;
+
     public void StartSearch() {
-        StartCoroutine(SearchForPlayer());
+        if (searchCoroutine == null) {
+            searchCoroutine = StartCoroutine(SearchForPlayer());
+        }
     }
 
     public void EndSearch() {
-        StopCoroutine(SearchForPlayer());
+        if (searchCoroutine != null) {
+            StopCoroutine(searchCoroutine);
+            searchCoroutine = null;
+        }
     }
 
 
