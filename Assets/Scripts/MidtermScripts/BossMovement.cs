@@ -47,10 +47,17 @@ public class BossMovement : MonoBehaviour
         }
     }
 
-    void LastStand() {
+    public void LastStand() {
         minSpeed = 50f;
         maxSpeed = 100f;
         minAngle = 135f;
         maxAngle = 235f;
+    }
+
+    public void Revert() {
+        minSpeed = 10f;
+        maxSpeed = 25f;
+        minAngle = -100f;
+        maxAngle = 100f;
     }
 }
