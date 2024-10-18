@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,8 +16,12 @@ public class GameManager : MonoBehaviour
     private int currentLevelIndex = 0;
 
     public UnityEvent onGameOver;
+    public UnityEvent onRestartGame;
 
-    [SerializeField] private Canvas gameOverCanvas;
+    [SerializeField] private GameObject gameOverCanvas;
+    [SerializeField] private GameObject gameCompleteCanvas;
+
+    [SerializeField] private EndingCutscene endingCutscene;
 
     public enum GameState {
         Briefing,
@@ -36,7 +41,7 @@ public class GameManager : MonoBehaviour
         instance = this;
 
         onGameOver.AddListener(GameOver);
-        gameOverCanvas.enabled = false;
+        onRestartGame.AddListener(RestartGame);
     }
 
     private void Start() {
@@ -97,44 +102,27 @@ public class GameManager : MonoBehaviour
 
     private void GameOver() {
         Debug.Log("Game Over");
-        gameOverCanvas.enabled = true;
+        gameOverCanvas.SetActive(true);
         PlayerUtilities.Instance.ToggleScripts(false);
+
+        UnlockCursor();
     }
 
     private void GameEnd() {
         Debug.Log("Game and ended, you win!");
+
+        gameCompleteCanvas.SetActive(true);
+        UnlockCursor();
     }
 
-    /*// Midterm Edit
-    public void PickedUpFuse(string fuseColour) {
-        switch (fuseColour) {
-            case "Blue":
-                hasBlueFuse = true;
-                Debug.Log("picked up blue fuse");
-                break;
-            case "Red":
-                hasRedFuse = true;
-                Debug.Log("picked up red fuse");
-                break;
-            case "Green":
-                hasGreenFuse = true;
-                Debug.Log("picked up green fuse");
-                break;
-        }
+    public void RestartGame() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public bool HasFuse(string fuseColour) {
-        switch (fuseColour) {
-            case "Blue":
-                return hasBlueFuse;
-            case "Red":
-                return hasRedFuse;
-            case "Green":
-                return hasGreenFuse;
-            default:
-                return false;
-        }
-    }*/
+    private void UnlockCursor() {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
 
     public void GameOverEvent() {
         Debug.Log("GAME OVER EVENT TRIGGERED! INVOKING...");
@@ -142,6 +130,3 @@ public class GameManager : MonoBehaviour
     }
 
 }
-
-/*[SerializeField] private string fuseColourString;
-GameManager.instance.PickedUpFuse(fuseColourString);*/

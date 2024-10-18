@@ -15,8 +15,6 @@ public class StartCutscene : CutsceneBehaviour {
     }
 
     protected override void CutsceneFinished(PlayableDirector director) {
-        PlayerUtilities.Instance.ToggleScripts(true);
-
         base.CutsceneFinished(director);
 
         player.position = endPoint.position;

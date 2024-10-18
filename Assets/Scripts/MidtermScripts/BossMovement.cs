@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class BossMovement : MonoBehaviour
 {
@@ -9,9 +10,13 @@ public class BossMovement : MonoBehaviour
     [SerializeField] private float minAngle = -100f;
     [SerializeField] private float maxAngle = 100f; // rotate between 100 and -100
 
+    [SerializeField] private Transform spotLight;
+
     private float rotationSpeed, rotationAngle, currentAngle;
 
     private Coroutine searchCoroutine;
+
+    private bool lastStand = false;
 
     public void StartSearch() {
         if (searchCoroutine == null) {
@@ -24,6 +29,8 @@ public class BossMovement : MonoBehaviour
             StopCoroutine(searchCoroutine);
             searchCoroutine = null;
         }
+
+        transform.eulerAngles = Vector3.zero;
     }
 
 
@@ -50,14 +57,30 @@ public class BossMovement : MonoBehaviour
     public void LastStand() {
         minSpeed = 50f;
         maxSpeed = 100f;
-        minAngle = 135f;
-        maxAngle = 235f;
-    }
+        minAngle = 180f;
+        maxAngle = 250f;
 
+        spotLight.localRotation = Quaternion.Euler(-77f, 0f, 0f);
+
+        lastStand = true;
+    }
+    
     public void Revert() {
         minSpeed = 10f;
         maxSpeed = 25f;
         minAngle = -100f;
         maxAngle = 100f;
+
+        spotLight.localRotation = Quaternion.Euler(-130f, 0f, 0f);
+
+        lastStand = false;
+    }
+
+    public void ToggleMode() {
+        if (lastStand) {
+            Revert();
+        } else {
+            LastStand();
+        }
     }
 }

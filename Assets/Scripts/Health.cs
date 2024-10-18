@@ -13,6 +13,8 @@ public class Health : MonoBehaviour {
 
     [SerializeField] private float health;
 
+    //[SerializeField] private PlayerDiedCutscene playerDiedCutscene;
+
     void Start()
     {
         health = maxHealth;
@@ -34,8 +36,21 @@ public class Health : MonoBehaviour {
         OnHealthUpdated(health);
     }
 
+    public void AddHealth(float value) {
+        if (isDead) return;
+
+        health += value;
+
+        if (health > maxHealth) {
+            health = maxHealth;
+        }
+
+        OnHealthUpdated(health);
+    
+    }
+
     void OnDeath() {
         Debug.Log("Player died");
-        GameManager.instance.onGameOver.Invoke();
+        PlayerDiedCutscene.Instance.TriggerDeathScene();
     }
 }

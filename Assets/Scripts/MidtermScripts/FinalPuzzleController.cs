@@ -11,19 +11,6 @@ public class FinalPuzzleController : CutsceneBehaviour {
 
     [SerializeField] private Door door;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void DetermineCompletion() {
         if (greenNumber.text == "7" && blueNumber.text == "2" && redNumber.text == "5") {
             Debug.Log("Puzzle Complete!");

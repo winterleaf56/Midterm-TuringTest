@@ -63,6 +63,6 @@ public class LineOfSight : MonoBehaviour {
     }
 
     public void SetDetectable() {
-        isDetected = false;
+        isDetected = !isDetected;
     }
 }

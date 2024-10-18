@@ -8,7 +8,7 @@ public class CameraEnemy : DamageableObject
 {
     private EnemyHealth health;
 
-    [SerializeField] private GameObject body;
+    //[SerializeField] private GameObject body;
     [SerializeField] private new Light light;
 
     public UnityEvent onPlayerInLight;
