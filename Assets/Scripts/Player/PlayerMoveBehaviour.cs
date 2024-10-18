@@ -37,7 +37,7 @@ public class PlayerMoveBehaviour : MonoBehaviour
     }
 
     void MovePlayer() {
-        moveMultiplier = input.sprint ? sprintMultiplier : 1;
+        //moveMultiplier = input.sprint ? sprintMultiplier : 1;
 
         characterController.Move((transform.forward * input.vertical + transform.right * input.horizontal) * moveSpeed * Time.deltaTime * moveMultiplier);
 

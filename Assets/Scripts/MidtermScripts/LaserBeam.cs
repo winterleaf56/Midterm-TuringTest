@@ -25,10 +25,10 @@ public class LaserBeam : MonoBehaviour {
             lineRenderer.SetPosition(1, laserOrigin.position + laserOrigin.forward * maxLaserDistance);
         }
 
-        if (Physics.Raycast(laserOrigin.position, laserOrigin.forward, out hit, maxLaserDistance, playerLayer)) {
+        if (lineRenderer.enabled == true && Physics.Raycast(laserOrigin.position, laserOrigin.forward, out hit, maxLaserDistance, playerLayer)) {
             Transform hitTransform = hit.transform;
             Health playerHealth = HealthUtility.GetHealthComponent(hitTransform);
-            HealthUtility.DamagePlayer(playerHealth, 5);
+            HealthUtility.DamagePlayer(playerHealth, 15);
         }
     }
 

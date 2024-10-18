@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     public float mouseX { get; private set; }
     public float mouseY { get; private set; }
     public bool jump { get; private set; }
-    public bool sprint { get; private set; }
+    //public bool sprint { get; private set; }
     public bool primaryClick { get; private set; }
     public bool secondaryClick { get; private set; }    
     public bool commandPressed { get; private set; }
@@ -55,7 +55,7 @@ public class PlayerInput : MonoBehaviour
         mouseX = Input.GetAxis("Mouse X");
         mouseY = Input.GetAxis("Mouse Y");
 
-        sprint = sprint || Input.GetButton("Sprint");
+        //sprint = sprint || Input.GetButton("Sprint");
         jump = jump || Input.GetButtonDown("Jump");
         interact = interact || Input.GetKeyDown(KeyCode.E);
 
@@ -79,7 +79,7 @@ public class PlayerInput : MonoBehaviour
         mouseX = 0;
         mouseY = 0;
         jump = false;
-        sprint = false;
+        //sprint = false;
         primaryClick = false;
         secondaryClick = false;
         commandPressed = false;

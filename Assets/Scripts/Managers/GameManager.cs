@@ -97,7 +97,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("Level Completed");
 
         // Go to the next level
+        Debug.Log($"LEVEL: {currentLevelIndex}");
         ChangeState(GameState.LevelStart, levels[++currentLevelIndex]);
+        Debug.Log($"LEVEL: {currentLevelIndex}");
     }
 
     private void GameOver() {
